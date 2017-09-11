@@ -61,12 +61,16 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetAxisRaw("Horizontal") > 0f) //Walk Right
         {
             input = new Vector2(1, 0);
+            if (gameObject.GetComponent<SpriteRenderer>().flipX)
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
             velocity = new Vector2(input.x * speed, rbody.velocity.y);
             //return new Vector2(1 * speed, rbody.velocity.y);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0f) //Walk Left
         {
             input = new Vector2(-1, 0);
+            if (!gameObject.GetComponent<SpriteRenderer>().flipX)
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
             velocity = new Vector2(input.x * speed, rbody.velocity.y);
             //return new Vector2(-1 * speed, rbody.velocity.y);
         }
